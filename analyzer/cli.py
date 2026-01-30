@@ -1,7 +1,9 @@
 import argparse
+from asyncio import subprocess
 from analyzer.ingestion.github_client import fetch_repositories
 from analyzer.processing.normalizer import normalize_repositories
 from analyzer.storage.sqlite_store import initialize_db, insert_repositories
+subprocess.run(["python", "scripts/run_pipeline.py"])
 
 
 
