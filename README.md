@@ -107,15 +107,15 @@ Top Ranked Repositories
 ```
 
 ## Design Philosophy
--Real-world data, not static datasets 
--Explainable logic over black-box models 
--Clear separation of concerns 
--Reproducible, inspectable pipeline 
+-Real-world data, not static datasets  
+-Explainable logic over black-box models   
+-Clear separation of concerns   
+-Reproducible, inspectable pipeline   
 
 ## Possible Extensions
--Time-decay factor for recent activity 
--Configurable scoring weights 
--Support for additional data domains 
+-Time-decay factor for recent activity   
+-Configurable scoring weights   
+-Support for additional data domains   
 
 ## Author
 Built as an industrial-style data pipeline project to demonstrate
