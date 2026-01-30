@@ -1,6 +1,8 @@
 import argparse
 from analyzer.ingestion.github_client import fetch_repositories
 from analyzer.processing.normalizer import normalize_repositories
+from analyzer.storage.sqlite_store import initialize_db, insert_repositories
+
 
 
 
@@ -33,6 +35,11 @@ def main():
 
     normalized = normalize_repositories(repos)
     print(f"Normalized {len(normalized)} repositories.")
+
+    initialize_db()
+    insert_repositories(normalized)
+    print("Stored repositories in database.")
+
 
 
 
