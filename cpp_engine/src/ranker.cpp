@@ -3,6 +3,7 @@
 #include <sstream>
 #include <vector>
 #include <algorithm>
+#include <string>
 
 struct Repo {
     std::string name;
@@ -17,7 +18,9 @@ double compute_score(const Repo& r) {
 }
 
 int main() {
-    std::ifstream file("data/repos.csv");
+    std::ifstream file;
+    file.open("data/repos.csv");
+
     if (!file.is_open()) {
         std::cerr << "Failed to open CSV file\n";
         return 1;
@@ -45,15 +48,18 @@ int main() {
         repos.push_back(r);
     }
 
-    std::sort(repos.begin(), repos.end(),
-              [](const Repo& a, const Repo& b) {
-                  return a.score > b.score;
-              });
+    std::sort(
+        repos.begin(),
+        repos.end(),
+        [](const Repo& a, const Repo& b) {
+            return a.score > b.score;
+        }
+    );
 
     std::cout << "\nTop Ranked Repositories\n";
     std::cout << "-----------------------\n";
 
-    for (size_t i = 0; i < std::min<size_t>(10, repos.size()); i++) {
+    for (size_t i = 0; i < repos.size() && i < 10; ++i) {
         std::cout << i + 1 << ". "
                   << repos[i].name
                   << " | score: " << repos[i].score
