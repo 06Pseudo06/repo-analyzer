@@ -1,4 +1,8 @@
 import argparse
+from analyzer.ingestion.github_client import fetch_repositories
+from analyzer.processing.normalizer import normalize_repositories
+
+
 
 def main():
     parser = argparse.ArgumentParser(
@@ -22,12 +26,25 @@ def main():
 
     args = parser.parse_args()
 
+    if args.keyword:
+        print("\nFetching repositories from GitHub...")
+        repos = fetch_repositories(args.keyword, pages=1)
+        print(f"Fetched {len(repos)} repositories.")
+
+    normalized = normalize_repositories(repos)
+    print(f"Normalized {len(normalized)} repositories.")
+
+
+
     print("\nRepo Analyzer")
     print("=============")
     print(f"Keyword : {args.keyword}")
     print(f"Top N   : {args.top}")
     print("\n[Phase 1] CLI initialized successfully.")
     print("Next step: GitHub API ingestion.\n")
+
+
+
 
 if __name__ == "__main__":
     main()
